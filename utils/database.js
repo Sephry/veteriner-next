@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-let isConnected = false;
+let isConnected = false; // track the connection
 
-export const connectDB = async () => {
+export const connectToDB = async () => {
   mongoose.set("strictQuery", true);
 
   if (isConnected) {
@@ -12,13 +12,14 @@ export const connectDB = async () => {
 
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
-      dbName: vetvet,
+      dbName: "vetvet",
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
 
     isConnected = true;
-    console.log("MongoDB is connected");
+
+    console.log("MongoDB connected");
   } catch (error) {
     console.log(error);
   }
